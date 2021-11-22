@@ -9,6 +9,9 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="#3578E5"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
             Facebook
         </a>
+        <a href="#" class="facebook-signup" @click.prevent="loginWithRun">
+            Runsystem
+        </a>
     </div>
 </template>
 
@@ -63,7 +66,7 @@ export default {
           this.$store.commit('setLoginUser', userInfo)
           window.FB.api(`/${response.authResponse.userID}`, userResponse => {
             if (userResponse) {
-              console.log(userResponse);
+              console.log(userResponse)
               var userInfo = {
                 loginType: 'fb',
                 fb: {
@@ -73,10 +76,20 @@ export default {
               }
               this.$store.commit('setLoginUser', userInfo)
             }
-          }, this.params);
+          }, this.params)
           router.push('/home')
         }
       }, this.params)
+    },
+    loginWithRun () {
+      window.open('https://checkin.runsystem.info/demo/oauth2?app_name=API_COMMON', '_blank', 'height=400,width=500,left=200,top=100')
+      window.addEventListener('message', (event) => {
+        if (event.origin === 'https://checkin.runsystem.info') {
+          const key = event.message ? 'message' : 'data'
+          const data = event[key]
+          console.log(data)
+        }
+      }, false)
     }
   }
 }

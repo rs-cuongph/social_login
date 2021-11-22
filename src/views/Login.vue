@@ -19,7 +19,7 @@
       </div>
     </form>
     <div class="footer">
-       <p>Don't have an account? <a href="/signup"> Create one now</a></p>
+      <p>Don't have an account? <a href="/signup"> Create one now</a></p>
     </div>
   </div>
 </template>
