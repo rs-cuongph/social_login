@@ -82,9 +82,10 @@ export default {
       }, this.params)
     },
     loginWithRun () {
-      window.open('https://checkin.runsystem.info/demo/oauth2?app_name=API_COMMON', '_blank', 'height=400,width=500,left=200,top=100')
+      const domain = 'https://checkin.runsystem.info/v2'
+      window.open(`${domain}/oauth2/login?client_id=8064b-4b4cb-20e7a`, '_blank', 'height=400,width=500,left=200,top=100')
       window.addEventListener('message', (event) => {
-        if (event.origin === 'https://checkin.runsystem.info') {
+        if (event.origin === domain) {
           const key = event.message ? 'message' : 'data'
           const data = event[key]
           console.log(data)
